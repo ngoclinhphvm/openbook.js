@@ -4,7 +4,13 @@ import { Author, AuthorWorksResponse } from "./schemes/author";
 import { SearchRequest, SearchResponse } from "./schemes/search";
 export declare class OpenLibraryClient {
     private client;
-    constructor();
+    /**
+     * @param userAgent - A string specifying the User-Agent for API requests.
+     * This should include the name of your application and a contact email.
+     * @example
+     * const client = new OpenLibraryClient("MyAppName/1.0 (myemail@example.com)");
+     */
+    constructor(userAgent: string);
     private request;
     getWork(id: string): Promise<Work>;
     getWorkEditions(id: string): Promise<WorkEditionResponse>;

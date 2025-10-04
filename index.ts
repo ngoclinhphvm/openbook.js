@@ -2,7 +2,7 @@
 import { OpenLibraryClient } from "./src/client";
 
 async function example() {
-  const client = new OpenLibraryClient();
+  const client = new OpenLibraryClient("MyAppName/1.0 (myemail@example.com)");
 
   try {
     const searchResults = await client.search({

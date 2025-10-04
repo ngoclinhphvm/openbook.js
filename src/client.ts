@@ -22,11 +22,17 @@ import {
 export class OpenLibraryClient {
   private client: AxiosInstance;
 
-  constructor() {
+  /**
+   * @param userAgent - A string specifying the User-Agent for API requests.
+   * This should include the name of your application and a contact email or phone number.
+   * @example
+   * const client = new OpenLibraryClient("MyAppName/1.0 (myemail@example.com)");
+   */
+  constructor(userAgent: string) {
     this.client = axios.create({
       baseURL: "https://openlibrary.org",
       headers: {
-        "User-Agent": "openlibrary.js",
+        "User-Agent": userAgent,
       },
     });
   }
@@ -72,7 +78,7 @@ export class OpenLibraryClient {
 
   async search(params: SearchRequest): Promise<SearchResponse> {
     const data = await this.request<any>(
-      `/search.json?${new URLSearchParams(params as any)}`
+      `/search.json?${new URLSearchParams(params as any)}`,
     );
     return SearchResponseSchema.parse(data);
   }

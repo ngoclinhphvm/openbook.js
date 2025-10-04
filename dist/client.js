@@ -10,11 +10,17 @@ const edition_1 = require("./schemes/edition");
 const author_1 = require("./schemes/author");
 const search_1 = require("./schemes/search");
 class OpenLibraryClient {
-    constructor() {
+    /**
+     * @param userAgent - A string specifying the User-Agent for API requests.
+     * This should include the name of your application and a contact email.
+     * @example
+     * const client = new OpenLibraryClient("MyAppName/1.0 (myemail@example.com)");
+     */
+    constructor(userAgent) {
         this.client = axios_1.default.create({
             baseURL: "https://openlibrary.org",
             headers: {
-                "User-Agent": "openlibrary.js",
+                "User-Agent": userAgent,
             },
         });
     }
